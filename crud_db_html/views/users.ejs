@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>User List</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(user => { %>
+                <tr>
+                    <td><%= user.id %></td>
+                    <td><%= user.username %></td>
+                    <td><%= user.email %></td>
+                    <td>
+                        <a href="/edit/<%= user.id %>">Edit</a>
+                        <form method="POST" action="/delete/<%= user.id %>" style="display: inline;">
+                            <button class="submit" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <h2>Add a New User</h2>
+    <form method="POST" action="/">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <button class="add" type="submit">Add User</button>
+    </form>
+</body>
+</html>
